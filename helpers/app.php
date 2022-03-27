@@ -17,6 +17,18 @@ function view($viewName, $pageData = [])
     else return false;
 }
 
+function model($modelName, $pageData = [], $data_process = null)
+{
+    global $db;
+    if ($data_process != null) $process = $data_process;
+    $data = $pageData;
+
+    if (file_exists(BASEDIR . '/model/' . $modelName . '.php')) {
+      $result =  require BASEDIR . '/model/' . $modelName . '.php';
+      return $result;
+    } else return false;
+}
+
 function assets($assetName)
 {
     if (file_exists(BASEDIR . '/public/' . $assetName))
@@ -24,33 +36,48 @@ function assets($assetName)
     else return false;
 }
 
-function lang($text) {
+function lang($text)
+{
     global $lang;
-    if(isset($lang[$text])) return $lang[$text];
+    if (isset($lang[$text])) return $lang[$text];
     else $text;
-
 }
 
-function add_session($index, $value) {
+function add_session($index, $value)
+{
     $_SESSION[$index] = $value;
 }
 
-function get_session($index) {
-    if(isset($_SESSION[$index])) return $_SESSION[$index];
+function get_session($index)
+{
+    if (isset($_SESSION[$index])) return $_SESSION[$index];
     else return false;
 }
 
-function post($index) {
-    if(isset($_POST[$index])) return htmlspecialchars(trim($_POST[$index]));
+function post($index)
+{
+    if (isset($_POST[$index])) return htmlspecialchars(trim($_POST[$index]));
     else return false;
 }
 
-function get($index) {
-    if(isset($_GET[$index])) return htmlspecialchars(trim($_GET[$index]));
+function get($index)
+{
+    if (isset($_GET[$index])) return htmlspecialchars(trim($_GET[$index]));
     else return false;
 }
 
-function get_cookie($index) {
-    if(isset($_COOKIE[$index])) return trim($_COOKIE[$index]);
+function get_cookie($index)
+{
+    if (isset($_COOKIE[$index])) return trim($_COOKIE[$index]);
     else return false;
+}
+
+function redirect($link) {
+    header('Location:'.URL.$link);
+}
+
+function url($url) {
+    global $config;
+
+    return URL.$config['lang'].'/'.$url;
 }
