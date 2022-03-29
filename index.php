@@ -50,3 +50,8 @@ if (file_exists(BASEDIR . '/controller/' . $config['route'][0] . '.php')) {
 
 if(get_session('error')) add_session('error', null);
 if(get_session('post')) add_session('post', null);
+
+$ip = '192.127.124.199';
+
+exec("ping -n 3 $ip", $output, $status);
+print_r($output);

@@ -1,6 +1,6 @@
 <?php
 $lang = [
-    'Title' => 'Title',
+    'Category Title' => 'Category Title',
     'Sign In Message' => 'Sign in to start your session',
     'Email' => 'E-Posta',
     'Passowrd' => 'Password',
